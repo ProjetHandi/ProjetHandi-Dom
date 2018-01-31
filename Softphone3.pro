@@ -32,3 +32,5 @@ HEADERS += \
 
 FORMS += \
         frame.ui
+
+DISTFILES +=
