@@ -16,6 +16,6 @@ int main(int argc, char *argv[])
                     qApp->desktop()->availableGeometry()
                     )
                 );
-    a.desktop()->close();
+
     return a.exec();
 }

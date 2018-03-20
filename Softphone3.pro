@@ -31,6 +31,13 @@ HEADERS += \
         frame.h
 
 FORMS += \
-        frame.ui
+        frame.ui \
+    incoming.ui
 
 DISTFILES +=
+
+# unix|win32: LIBS += -lmysqlcppconn
+
+INSTALLS        = target
+target.files    = Phone
+target.path     = /home/pi/phone
