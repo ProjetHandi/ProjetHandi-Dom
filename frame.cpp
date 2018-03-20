@@ -4,6 +4,7 @@
 #include "ui_frame.h"
 #include <QCoreApplication>
 #include <QString>
+#include <QProcess>
 //#include <mysql_driver.h>
 //#include <mysql_connection.h>
 //#include <cppconn/resultset.h>
@@ -49,49 +50,13 @@ void Frame::on_suivant_clicked()
 
 void Frame::on_contact1_clicked()
 {
-//    sql::Driver *driver;
-//    sql::Connection *con;
-//    sql::PreparedStatement *prep_stmt;
-//    sql::ResultSet *res;
-//    sql::Statement *stmt;
-
-//    driver = get_driver_instance();
-//    con = driver->connect("127.0.0.1", "root", "btsir123");
-//    stmt = con->createStatement();
-//    stmt->execute("USE HandiDom");
-
-//    prep_stmt = con->prepareStatement("SELECT numero FROM contacts WHERE prenom = 'Louis'");
-//    res = prep_stmt->executeQuery();
-//    if(!res->next())
-//        return;
-//    std::cout << res->getString("numero") << std::endl;
-
-//    delete stmt;
-//    delete con;
-//    delete res;
-
-    FILE *fpipe;
-    char *command = "python phone/main.py";
-    int i = 0;
-    char c = 0;
-
-    if (0 == (fpipe = (FILE*)popen(command, "r")))
-    {
-        perror("popen() failed.");
-        exit(1);
-    }
-
-    while (fread(&c, sizeof c, 1, fpipe))
-    {
-        printf("%c", c);
-    }
-
-    pclose(fpipe);
+    QString programme("python /home/nathan/PycharmProjects/HandiDomPhone/main.py \"SELECT numero FROM contacts WHERE prenom = 'Louis'\"");
+    QProcess::startDetached(programme);
 }
 
 void Frame::on_contact2_clicked()
 {
-//   int r = system("whoami");
-//    std::cout << r;
+    int r = system("whoami");
+    std::cout << r;
 }
 
