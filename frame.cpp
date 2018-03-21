@@ -5,6 +5,7 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QProcess>
+#include <QDebug>
 //#include <mysql_driver.h>
 //#include <mysql_connection.h>
 //#include <cppconn/resultset.h>
@@ -48,6 +49,17 @@ Frame::~Frame()
     delete ui;
 }
 
+QString Frame::query(QString command) {
+    QString programme("python py/main.py " + command);
+    QProcess process;
+    QByteArray out;
+    process.start(programme);
+    process.waitForFinished(-1);
+    out = process.readAllStandardOutput();
+    out.toStdString();
+    return out;
+}
+
 void Frame::on_suivant_clicked()
 {
 
@@ -55,8 +67,10 @@ void Frame::on_suivant_clicked()
 
 void Frame::on_contact1_clicked()
 {
-    QString programme("python py/main.py \"SELECT numero FROM contacts WHERE prenom = 'Louis'\"");
-    QProcess::startDetached(programme);
+    QString result;
+    result = this->query("\"SELECT numero FROM contacts WHERE prenom = 'Louis'\"");
+    qDebug() << result;
+
 }
 
 void Frame::on_contact2_clicked()
