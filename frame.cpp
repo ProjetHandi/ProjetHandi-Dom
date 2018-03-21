@@ -14,26 +14,21 @@
 
 Frame::Frame(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Frame)
-{
+    ui(new Ui::Frame) {
     ui->setupUi(this);
-}
-
-Frame::~Frame()
-{
-    delete ui;
-}
-
-void Frame::on_suivant_clicked()
-{
-    QIcon icon1, icon2, icon3, icon4, icon5, icon6;
-    QString color[5] = {"yellow", "orange", "pink", "blue", "red"};
-    icon1.addFile(QStringLiteral("/home/nathan/Musique/3.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    icon2.addFile(QStringLiteral("/home/nathan/Musique/2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    icon3.addFile(QStringLiteral("/home/nathan/Musique/1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    icon4.addFile(QStringLiteral("/home/nathan/Musique/missk8.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    icon5.addFile(QStringLiteral("/home/nathan/Musique/nathan.jpg"), QSize(), QIcon::Normal, QIcon::Off);
-    icon6.addFile(QStringLiteral("/home/nathan/Musique/titouan.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    QIcon icon1, icon2, icon3, icon4, icon5, icon6, fleche1, fleche2, tel;
+    fleche1.addFile(QStringLiteral("img/ihm/f.png"), QSize(), QIcon::Normal, QIcon::Off);
+    fleche2.addFile(QStringLiteral("img/ihm/f2.png"), QSize(), QIcon::Normal, QIcon::Off);
+    tel.addFile(QStringLiteral("img/ihm/phone.png"), QSize(), QIcon::Normal, QIcon::Off);
+    icon1.addFile(QStringLiteral("img/new/3.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon2.addFile(QStringLiteral("img/new/2.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon3.addFile(QStringLiteral("img/new/1.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon4.addFile(QStringLiteral("img/new/missk8.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon5.addFile(QStringLiteral("img/new/nathan.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    icon6.addFile(QStringLiteral("img/new/titouan.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+    ui->precedent->setIcon(fleche1);
+    ui->suivant->setIcon(fleche2);
+    ui->telephoner->setIcon(tel);
     ui->contact1->setIcon(icon1);
     ui->contact2->setIcon(icon2);
     ui->contact3->setIcon(icon3);
@@ -48,9 +43,19 @@ void Frame::on_suivant_clicked()
     ui->contact6->setIconSize(QSize(128, 128));
 }
 
+Frame::~Frame()
+{
+    delete ui;
+}
+
+void Frame::on_suivant_clicked()
+{
+
+}
+
 void Frame::on_contact1_clicked()
 {
-    QString programme("python /home/nathan/PycharmProjects/HandiDomPhone/main.py \"SELECT numero FROM contacts WHERE prenom = 'Louis'\"");
+    QString programme("python py/main.py \"SELECT numero FROM contacts WHERE prenom = 'Louis'\"");
     QProcess::startDetached(programme);
 }
 

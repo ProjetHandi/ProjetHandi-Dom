@@ -65,7 +65,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/phone.png</normaloff>../Images/phone.png</iconset>
+      <normaloff>img/ihm/phone.png</normaloff>img/ihm/phone.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -94,7 +94,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Téléchargements/f.png</normaloff>../Téléchargements/f.png</iconset>
+      <normaloff>img/ihm/f.png</normaloff>img/ihm/f.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -123,7 +123,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Téléchargements/f2.png</normaloff>../Téléchargements/f2.png</iconset>
+      <normaloff>img/ihm/f2.png</normaloff>img/ihm/f2.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -149,7 +149,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/1.png</normaloff>../Images/Documents/1.png</iconset>
+      <normaloff>img/origin/1.png</normaloff>img/origin/1.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -175,7 +175,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/2.png</normaloff>../Images/Documents/2.png</iconset>
+      <normaloff>img/origin/2.png</normaloff>img/origin/2.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -201,7 +201,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/3.png</normaloff>../Images/Documents/3.png</iconset>
+      <normaloff>img/origin/3.png</normaloff>img/origin/3.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -230,7 +230,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/4.png</normaloff>../Images/Documents/4.png</iconset>
+      <normaloff>img/origin/4.png</normaloff>img/origin/4.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -256,7 +256,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/5.png</normaloff>../Images/Documents/5.png</iconset>
+      <normaloff>img/origin/5.png</normaloff>img/origin/5.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -282,7 +282,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Images/Documents/6.png</normaloff>../Images/Documents/6.png</iconset>
+      <normaloff>img/origin/6.png</normaloff>img/origin/6.png</iconset>
     </property>
     <property name="iconSize">
      <size>
