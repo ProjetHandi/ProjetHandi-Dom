@@ -68,9 +68,6 @@ void Frame::on_suivant_clicked()
 
 void Frame::on_contact1_clicked()
 {
-    QString result;
-    result = this->query("\"SELECT telephone FROM contacts WHERE prenom = 'Louis'\"");
-    qDebug() << result;
 
 }
 
