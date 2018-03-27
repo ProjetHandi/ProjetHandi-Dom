@@ -6,11 +6,6 @@
 #include <QString>
 #include <QProcess>
 #include <QDebug>
-//#include <mysql_driver.h>
-//#include <mysql_connection.h>
-//#include <cppconn/resultset.h>
-//#include <cppconn/statement.h>
-//#include <cppconn/prepared_statement.h>
 #include <unistd.h>
 
 Frame::Frame(QWidget *parent) :
@@ -23,17 +18,17 @@ Frame::Frame(QWidget *parent) :
     fleche1.addFile(QStringLiteral("img/ihm/f.png"), QSize(), QIcon::Normal, QIcon::Off);
     fleche2.addFile(QStringLiteral("img/ihm/f2.png"), QSize(), QIcon::Normal, QIcon::Off);
     tel.addFile(QStringLiteral("img/ihm/phone.png"), QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Louis'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Louis'\"");
     icon1.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Leo'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Leo'\"");
     icon2.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Adrien'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Adrien'\"");
     icon3.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Kateryna'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Kateryna'\"");
     icon4.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Nathan'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Nathan'\"");
     icon5.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
-    result = this->query("\"SELECT photo FROM contacts WHERE prenom = 'Titouan'\"");
+    result = this->queryOne("\"SELECT photo FROM contacts WHERE prenom = 'Titouan'\"");
     icon6.addFile(result, QSize(), QIcon::Normal, QIcon::Off);
 
     ui->precedent->setIcon(fleche1); ui->suivant->setIcon(fleche2); ui->telephoner->setIcon(tel);
@@ -42,6 +37,14 @@ Frame::Frame(QWidget *parent) :
     ui->contact1->setIconSize(QSize(128, 128)); ui->contact2->setIconSize(QSize(128, 128));
     ui->contact3->setIconSize(QSize(128, 128)); ui->contact4->setIconSize(QSize(128, 128));
     ui->contact5->setIconSize(QSize(128, 128)); ui->contact6->setIconSize(QSize(128, 128));
+
+}
+
+void Frame::makeCall(QString number) {
+    QString programme("sudo python py/call.py " + number);
+    qDebug() << "python py/call.py " + number;
+    QProcess process;
+    process.startDetached(programme);
 }
 
 Frame::~Frame()
@@ -49,7 +52,13 @@ Frame::~Frame()
     delete ui;
 }
 
-QString Frame::query(QString command) {
+void Frame::on_contact1_clicked()
+{
+    this->makeCall("\"+33651504320\"");
+}
+
+
+QString Frame::queryOne(QString command) {
     QString programme("python py/main.py " + command);
     QProcess process;
     QByteArray out;
@@ -62,11 +71,6 @@ QString Frame::query(QString command) {
 }
 
 void Frame::on_suivant_clicked()
-{
-
-}
-
-void Frame::on_contact1_clicked()
 {
 
 }

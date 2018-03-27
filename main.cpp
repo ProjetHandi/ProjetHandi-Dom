@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Frame w;
+
     w.show();
     w.setGeometry(
                 QStyle::alignedRect(

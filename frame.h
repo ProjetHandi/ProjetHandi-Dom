@@ -14,7 +14,8 @@ class Frame : public QMainWindow
 
 public:
     explicit Frame(QWidget *parent = 0);
-    QString query(QString command);
+    QString queryOne(QString command);
+    void makeCall(QString number);
     ~Frame();
 private slots:
     void on_suivant_clicked();
