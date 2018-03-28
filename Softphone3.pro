@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         frame.cpp \
-    incoming.cpp
+    incoming.cpp \
+    contact.cpp
 
 HEADERS += \
         frame.h \
-    incoming.h
+    incoming.h \
+    contact.h
 
 FORMS += \
         frame.ui \
@@ -38,7 +40,7 @@ FORMS += \
 
 DISTFILES +=
 
-# unix|win32: LIBS += -lmysqlcppconn
+unix|win32: LIBS += -lmysqlcppconn
 
 INSTALLS        = target
 target.files    = Phone

@@ -4,7 +4,13 @@
 #include "ui_frame.h"
 #include <QCoreApplication>
 #include <QString>
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
 #include <QProcess>
+#include <contact.h>
 #include <QDebug>
 #include <unistd.h>
 
@@ -42,7 +48,6 @@ Frame::Frame(QWidget *parent) :
 
 void Frame::makeCall(QString number) {
     QString programme("sudo python py/call.py " + number);
-    qDebug() << "python py/call.py " + number;
     QProcess process;
     process.startDetached(programme);
 }
@@ -54,6 +59,7 @@ Frame::~Frame()
 
 void Frame::on_contact1_clicked()
 {
+//    if (this->queryOne("\"SELECT frequence FROM contacts WHERE prenom = 'Louis'\""))
     this->makeCall("\"+33651504320\"");
 }
 
@@ -70,13 +76,45 @@ QString Frame::queryOne(QString command) {
     return out;
 }
 
+void Frame::getContacts(QMap<QString, Contacts> map) {
+    QMapIterator<QString, Contacts> i(map);
+    while (i.hasNext()) {
+        i.next();
+        qDebug() << i.key() << ": " << i.value().prenom << "\n";
+    }
+}
+
+QMap<QString, Contacts> Frame::query(QString query) {
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::PreparedStatement *prep_stmt;
+    sql::ResultSet *res;
+    sql::Statement *stmt;
+
+    driver = get_driver_instance();
+    con = driver->connect("127.0.0.1", "root", "btsir123");
+    stmt = con->createStatement();
+    stmt->execute("USE HandiDom");
+
+    prep_stmt = con->prepareStatement(query.toStdString());
+    res = prep_stmt->executeQuery();
+
+    while(res->next()) {
+            map.insert(res->getString(nom), new Contact(res->getString()));
+        }
+
+    delete stmt;
+    delete con;
+    delete res;
+    return map;
+}
+
 void Frame::on_suivant_clicked()
 {
-
+    this->getContacts(this->query("SELECT * FROM contacts WHERE nom = 'Pernez'"));
 }
 
 void Frame::on_contact2_clicked()
 {
-
 }
 
