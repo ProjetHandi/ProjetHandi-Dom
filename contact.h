@@ -4,33 +4,36 @@
 #include <QObject>
 #include <QString>
 
-class Contact : public QObject
+class Contact
 {
-    Q_OBJECT
 public:
-    explicit Contact(QObject *parent = nullptr, QString nom, QString prenom, QString telephone, QString frequence);
+    Contact(std::string nom, std::string prenom, std::string photo, std::string telephone, std::string frequence);
 
-    QString getNom() const;
-    void setNom(const QString &value);
+    std::string getNom() const;
+    void setNom(const std::string &value);
 
-    QString getPrenom() const;
-    void setPrenom(const QString &value);
+    std::string getPrenom() const;
+    void setPrenom(const std::string &value);
 
-    QString getTelephone() const;
-    void setTelephone(const QString &value);
+    std::string getTelephone() const;
+    void setTelephone(const std::string &value);
 
-    QString getPhoto() const;
-    void setPhoto(const QString &value);
+    std::string getPhoto() const;
+    void setPhoto(const std::string &value);
 
-    QString getFrequence() const;
-    void setFrequence(const QString &value);
+    std::string getFrequence() const;
+    void setFrequence(const std::string &value);
+
+    QMap<QString, Contact> getContacts() const;
+    void setContacts(const QMap<QString, Contact> &value);
 
 private:
-    QString nom;
-    QString prenom;
-    QString telephone;
-    QString photo;
-    QString frequence;
+    QMap<QString, Contact> contacts;
+    std::string nom;
+    std::string prenom;
+    std::string telephone;
+    std::string photo;
+    std::string frequence;
 
 signals:
 

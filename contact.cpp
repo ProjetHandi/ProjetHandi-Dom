@@ -1,59 +1,60 @@
 #include "contact.h"
 
-Contact::Contact(QObject *parent, QString nom, QString prenom, QString telephone, QString frequence) : QObject(parent)
+Contact::Contact(std::string nom, std::string prenom, std::string photo, std::string telephone, std::string frequence)
 {
     this->nom = nom;
     this->prenom = prenom;
+    this->photo = photo;
     this->telephone = telephone;
     this->frequence = frequence;
 }
 
-QString Contact::getNom() const
+std::string Contact::getNom() const
 {
     return nom;
 }
 
-void Contact::setNom(const QString &value)
+void Contact::setNom(const std::string &value)
 {
     nom = value;
 }
 
-QString Contact::getPrenom() const
+std::string Contact::getPrenom() const
 {
     return prenom;
 }
 
-void Contact::setPrenom(const QString &value)
+void Contact::setPrenom(const std::string &value)
 {
     prenom = value;
 }
 
-QString Contact::getTelephone() const
+std::string Contact::getTelephone() const
 {
     return telephone;
 }
 
-void Contact::setTelephone(const QString &value)
+void Contact::setTelephone(const std::string &value)
 {
     telephone = value;
 }
 
-QString Contact::getPhoto() const
+std::string Contact::getPhoto() const
 {
     return photo;
 }
 
-void Contact::setPhoto(const QString &value)
+void Contact::setPhoto(const std::string &value)
 {
     photo = value;
 }
 
-QString Contact::getFrequence() const
+std::string Contact::getFrequence() const
 {
     return frequence;
 }
 
-void Contact::setFrequence(const QString &value)
+void Contact::setFrequence(const std::string &value)
 {
     frequence = value;
 }

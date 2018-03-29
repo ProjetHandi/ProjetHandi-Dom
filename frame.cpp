@@ -11,6 +11,8 @@
 #include <cppconn/prepared_statement.h>
 #include <QProcess>
 #include <contact.h>
+#include <QMap>
+#include <QMapIterator>
 #include <QDebug>
 #include <unistd.h>
 
@@ -76,21 +78,21 @@ QString Frame::queryOne(QString command) {
     return out;
 }
 
-void Frame::getContacts(QMap<QString, Contacts> map) {
-    QMapIterator<QString, Contacts> i(map);
+void Frame::getContacts(QMap<QString, Contact> map) {
+    QMapIterator<QString, Contact> i(map);
     while (i.hasNext()) {
         i.next();
-        qDebug() << i.key() << ": " << i.value().prenom << "\n";
+        qDebug() << i.value().getNom().c_str() << "|" << i.value().getPrenom().c_str() << "|" << i.value().getPhoto().c_str() << "|" << i.value().getTelephone().c_str() << "|" << i.value().getFrequence().c_str();
     }
 }
 
-QMap<QString, Contacts> Frame::query(QString query) {
+QMap<QString, Contact> Frame::query(QString query) {
     sql::Driver *driver;
     sql::Connection *con;
     sql::PreparedStatement *prep_stmt;
     sql::ResultSet *res;
     sql::Statement *stmt;
-
+    QMap<QString, Contact> map;
     driver = get_driver_instance();
     con = driver->connect("127.0.0.1", "root", "btsir123");
     stmt = con->createStatement();
@@ -100,8 +102,12 @@ QMap<QString, Contacts> Frame::query(QString query) {
     res = prep_stmt->executeQuery();
 
     while(res->next()) {
-            map.insert(res->getString(nom), new Contact(res->getString()));
-        }
+        map.insert(QString::fromStdString(res->getString("nom").c_str()), Contact(res->getString("nom").asStdString(),
+                                                                                  res->getString("prenom").asStdString(),
+                                                                                  res->getString("photo").asStdString(),
+                                                                                  res->getString("telephone").asStdString(),
+                                                                                  res->getString("frequence").asStdString()));
+    }
 
     delete stmt;
     delete con;
@@ -111,7 +117,7 @@ QMap<QString, Contacts> Frame::query(QString query) {
 
 void Frame::on_suivant_clicked()
 {
-    this->getContacts(this->query("SELECT * FROM contacts WHERE nom = 'Pernez'"));
+    this->getContacts(this->query("SELECT * FROM contacts"));
 }
 
 void Frame::on_contact2_clicked()
