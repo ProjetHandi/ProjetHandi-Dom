@@ -24,11 +24,7 @@ public:
     std::string getFrequence() const;
     void setFrequence(const std::string &value);
 
-    QMap<QString, Contact> getContacts() const;
-    void setContacts(const QMap<QString, Contact> &value);
-
 private:
-    QMap<QString, Contact> contacts;
     std::string nom;
     std::string prenom;
     std::string telephone;

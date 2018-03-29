@@ -92,7 +92,7 @@ QMap<QString, Contact> Frame::query(QString query) {
     sql::PreparedStatement *prep_stmt;
     sql::ResultSet *res;
     sql::Statement *stmt;
-    QMap<QString, Contact> map;
+    QMap<QString, Contact> contacts;
     driver = get_driver_instance();
     con = driver->connect("127.0.0.1", "root", "btsir123");
     stmt = con->createStatement();
@@ -102,7 +102,7 @@ QMap<QString, Contact> Frame::query(QString query) {
     res = prep_stmt->executeQuery();
 
     while(res->next()) {
-        map.insert(QString::fromStdString(res->getString("nom").c_str()), Contact(res->getString("nom").asStdString(),
+        contacts.insert(QString::fromStdString(res->getString("nom").c_str()), Contact(res->getString("nom").asStdString(),
                                                                                   res->getString("prenom").asStdString(),
                                                                                   res->getString("photo").asStdString(),
                                                                                   res->getString("telephone").asStdString(),
@@ -112,7 +112,7 @@ QMap<QString, Contact> Frame::query(QString query) {
     delete stmt;
     delete con;
     delete res;
-    return map;
+    return contacts;
 }
 
 void Frame::on_suivant_clicked()
